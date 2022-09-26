@@ -1,7 +1,8 @@
 package com.briant.dao;
 
-import com.briant.entities.SuperPerson;
 import java.util.List;
+
+import com.briant.dto.SuperPerson;
 
 public interface SuperPersonDao {
     SuperPerson getSuperById(int heroId);

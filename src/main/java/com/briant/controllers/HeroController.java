@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.briant.controllers;
 
 import java.util.ArrayList;
@@ -23,9 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.briant.dao.SightingDao;
-import com.briant.entities.Organization;
-import com.briant.entities.Power;
-import com.briant.entities.SuperPerson;
+import com.briant.dto.Organization;
+import com.briant.dto.Power;
+import com.briant.dto.SuperPerson;
 import com.briant.service.ServiceLayer;
 
 import jakarta.servlet.http.HttpServletRequest;

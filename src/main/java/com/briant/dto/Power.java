@@ -1,4 +1,4 @@
-package com.briant.entities;
+package com.briant.dto;
 
 import java.util.Objects;
 import javax.validation.constraints.NotBlank;

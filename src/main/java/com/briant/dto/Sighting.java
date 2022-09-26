@@ -1,4 +1,4 @@
-package com.briant.entities;
+package com.briant.dto;
 
 import java.sql.Date;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.briant.controllers;
 
 import com.briant.dao.SightingDao;
-import com.briant.entities.Sighting;
+import com.briant.dto.Sighting;
 import com.briant.service.ServiceLayer;
 import java.util.HashSet;
 import java.util.List;

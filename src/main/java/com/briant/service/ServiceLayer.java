@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.briant.service;
 
 import java.sql.Date;
@@ -23,11 +17,11 @@ import com.briant.dao.OrganizationDao;
 import com.briant.dao.PowerDao;
 import com.briant.dao.SightingDao;
 import com.briant.dao.SuperPersonDao;
-import com.briant.entities.Location;
-import com.briant.entities.Organization;
-import com.briant.entities.Power;
-import com.briant.entities.Sighting;
-import com.briant.entities.SuperPerson;
+import com.briant.dto.Location;
+import com.briant.dto.Organization;
+import com.briant.dto.Power;
+import com.briant.dto.Sighting;
+import com.briant.dto.SuperPerson;
 
 import jakarta.servlet.http.HttpServletRequest;
 

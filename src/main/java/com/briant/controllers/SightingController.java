@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.briant.dao.SightingDao;
-import com.briant.entities.Sighting;
+import com.briant.dto.Sighting;
 import com.briant.service.ServiceLayer;
 
 import jakarta.servlet.http.HttpServletRequest;

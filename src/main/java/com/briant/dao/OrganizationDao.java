@@ -1,8 +1,9 @@
 
 package com.briant.dao;
 
-import com.briant.entities.Organization;
 import java.util.List;
+
+import com.briant.dto.Organization;
 
 
 public interface OrganizationDao {

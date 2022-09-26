@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.briant.dao.OrganizationDao;
-import com.briant.entities.Organization;
+import com.briant.dto.Organization;
 import com.briant.service.ServiceLayer;
 
 import jakarta.servlet.http.HttpServletRequest;

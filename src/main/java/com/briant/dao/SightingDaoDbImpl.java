@@ -1,8 +1,5 @@
 package com.briant.dao;
 
-import com.briant.entities.Location;
-import com.briant.entities.Sighting;
-import com.briant.entities.SuperPerson;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -13,6 +10,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.briant.dto.Location;
+import com.briant.dto.Sighting;
+import com.briant.dto.SuperPerson;
 
 @Repository
 public class SightingDaoDbImpl implements SightingDao {

@@ -1,7 +1,8 @@
 package com.briant.dao;
 
-import com.briant.entities.Power;
 import java.util.List;
+
+import com.briant.dto.Power;
 
 public interface PowerDao {
     Power getPowerById(int powerId);

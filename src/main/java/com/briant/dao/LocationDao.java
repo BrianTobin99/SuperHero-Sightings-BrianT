@@ -1,7 +1,8 @@
 package com.briant.dao;
 
-import com.briant.entities.Location;
 import java.util.List;
+
+import com.briant.dto.Location;
 
 public interface LocationDao {
     Location getLocationById(int locationId);

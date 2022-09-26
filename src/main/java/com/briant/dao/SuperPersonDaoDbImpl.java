@@ -1,8 +1,5 @@
 package com.briant.dao;
 
-import com.briant.entities.Organization;
-import com.briant.entities.Power;
-import com.briant.entities.SuperPerson;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -12,6 +9,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.briant.dto.Organization;
+import com.briant.dto.Power;
+import com.briant.dto.SuperPerson;
 
 @Repository
 public class SuperPersonDaoDbImpl implements SuperPersonDao {
