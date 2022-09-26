@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.briant.dao.SightingDao;
-import com.briant.dto.Organization;
+import com.briant.dto.Organisation;
 import com.briant.dto.Power;
 import com.briant.dto.SuperPerson;
 import com.briant.service.ServiceLayer;
@@ -42,7 +42,7 @@ public class HeroController {
         List<SuperPerson> heroes = service.getHeroes();
         model.addAttribute("heroes", heroes);
         model.addAttribute("powers", service.getPowers());
-        model.addAttribute("organizations", service.getOrganizations());
+        model.addAttribute("organisations", service.getOrganisations());
         return "heroes";
     }
     
@@ -50,23 +50,23 @@ public class HeroController {
     public String addVillain(@RequestParam(value = "superPersonName", required = true) String name,
                              @RequestParam(value = "superPersonDesc", required = false) String description,
                              @RequestParam(value = "superPersonPowers", required = false) int[] powerIds,
-                             @RequestParam(value = "superPersonOrgs", required = false) int[] organizationIds
+                             @RequestParam(value = "superPersonOrgs", required = false) int[] organisationIds
                              ){
         violations.clear();
         SuperPerson hero = new SuperPerson(name, description, false);
         List<Power> powers = new ArrayList<>();
         if(powerIds != null){
             for(int powerId: powerIds){
-                powers.add(service.getPowerById(powerId));
+                powers.add(service.getPowerByID(powerId));
             }
             hero.setPowers(powers);
         }
-        if(organizationIds != null){
-            List<Organization> organizations = new ArrayList<>();
-            for(int orgId: organizationIds){
-                organizations.add(service.getOrganizationById(orgId));
+        if(organisationIds != null){
+            List<Organisation> organisations = new ArrayList<>();
+            for(int orgId: organisationIds){
+                organisations.add(service.getOrganisationByID(orgId));
             }
-            hero.setOrganizations(organizations);
+            hero.setOrganisations(organisations);
         }
 
         
@@ -82,7 +82,7 @@ public class HeroController {
     @GetMapping("deleteHero")
     public String deleteHero(HttpServletRequest request){
         int id = Integer.parseInt(request.getParameter("id"));
-        service.deleteSuperPersonById(id);
+        service.deleteSuperPersonByID(id);
         return "redirect:/heroes";
     }
     
@@ -91,7 +91,7 @@ public class HeroController {
         violations.clear();
         model.addAttribute("errors", violations);
         int id = Integer.parseInt(request.getParameter("id"));
-        SuperPerson hero = service.getSuperPersonById(id);
+        SuperPerson hero = service.getSuperPersonByID(id);
 
         model.addAttribute("hero", hero);
         return "editHero";
@@ -100,7 +100,7 @@ public class HeroController {
     @PostMapping("editHero")
     public String performEditHero(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        SuperPerson hero = service.getSuperPersonById(id);
+        SuperPerson hero = service.getSuperPersonByID(id);
         hero = service.editSuperPerson(hero, request);
         
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.briant.dao.SightingDao;
-import com.briant.dto.Organization;
+import com.briant.dto.Organisation;
 import com.briant.dto.Power;
 import com.briant.dto.SuperPerson;
 import com.briant.service.ServiceLayer;
@@ -60,7 +60,7 @@ public class VillainController {
             villain.setPowers(powers);
         }
         if(organizationIds != null){
-            List<Organization> organizations = new ArrayList<>();
+            List<Organisation> organizations = new ArrayList<>();
             for(int orgId: organizationIds){
                 organizations.add(service.getOrganizationById(orgId));
             }

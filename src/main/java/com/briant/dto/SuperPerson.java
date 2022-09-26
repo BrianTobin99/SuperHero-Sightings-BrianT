@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class SuperPerson {
-    private int superPersonId;
+    private int superPersonID;
     private String name, description;
     private boolean villain;
-    private List<Organization> organizations;
+    private List<Organisation> organizations;
     private List<Power> powers;
     String organizationNames, powerNames;
     
@@ -21,12 +21,12 @@ public class SuperPerson {
         this.description = description;
         this.villain = villain;
     }
-    public int getSuperPersonId() {
-        return superPersonId;
+    public int getSuperPersonID() {
+        return superPersonID;
     }
 
-    public void setSuperPersonId(int superPersonId) {
-        this.superPersonId = superPersonId;
+    public void setSuperPersonID(int superPersonID) {
+        this.superPersonID = superPersonID;
     }
 
     public String getName() {
@@ -53,11 +53,11 @@ public class SuperPerson {
         this.villain = villain;
     }
 
-    public List<Organization> getOrganizations() {
+    public List<Organisation> getOrganizations() {
         return organizations;
     }
 
-    public void setOrganizations(List<Organization> organizations) {
+    public void setOrganizations(List<Organisation> organizations) {
         this.organizations = organizations;
     }
 
@@ -73,7 +73,7 @@ public class SuperPerson {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + this.superPersonId;
+        hash = 71 * hash + this.superPersonID;
         hash = 71 * hash + Objects.hashCode(this.name);
         hash = 71 * hash + Objects.hashCode(this.description);
         hash = 71 * hash + (this.villain ? 1 : 0);
@@ -92,7 +92,7 @@ public class SuperPerson {
             return false;
         }
         final SuperPerson other = (SuperPerson) obj;
-        if (this.superPersonId != other.superPersonId) {
+        if (this.superPersonID != other.superPersonID) {
             return false;
         }
         if (this.villain != other.villain) {

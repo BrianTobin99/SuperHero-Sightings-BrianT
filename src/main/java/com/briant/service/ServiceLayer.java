@@ -13,12 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.briant.dao.LocationDao;
-import com.briant.dao.OrganizationDao;
 import com.briant.dao.PowerDao;
 import com.briant.dao.SightingDao;
 import com.briant.dao.SuperPersonDao;
 import com.briant.dto.Location;
-import com.briant.dto.Organization;
 import com.briant.dto.Power;
 import com.briant.dto.Sighting;
 import com.briant.dto.SuperPerson;
@@ -31,7 +29,7 @@ public class ServiceLayer {
     LocationDao locDao;
     
     @Autowired
-    OrganizationDao orgDao;
+    OrganisationDao orgDao;
     
     @Autowired
     PowerDao powerDao;
@@ -47,11 +45,11 @@ public class ServiceLayer {
         List<Sighting> sightings = sightingDao.getAllVillainSightings();
         sightings.addAll(sightingDao.getAllHeroSightings());
         sightings.forEach(sighting ->{
-            sighting.setSuperPerson(superPersonDao.getSuperById(sighting.getSuperPersonId()));
-            sighting.setLocation(locDao.getLocationById(sighting.getLocationId()));
-            sighting.setOrganizations(sighting.getSuperPerson().getOrganizations());
+            sighting.setSuperPerson(superPersonDao.getSuperByID(sighting.getSuperPersonID()));
+            sighting.setLocation(locDao.getLocationByID(sighting.getLocationID()));
+            sighting.setOrganisations(sighting.getSuperPerson().getOrganisations());
             sighting.setPowers(sighting.getSuperPerson().getPowers());
-            sighting.getOrganizations().forEach(org -> {
+            sighting.getOrganisations().forEach(org -> {
                     sighting.appendOrgNames(org.getName());
             });
             sighting.getPowers().forEach(power -> {
@@ -68,7 +66,7 @@ public class ServiceLayer {
     public List<SuperPerson> getVillains() {
         List<SuperPerson> villains = superPersonDao.getAllVillains();
         villains.forEach(villain -> {
-            villain.getOrganizations().forEach(org -> {
+            villain.getOrganisations().forEach(org -> {
                 villain.appendOrgNames(org.getName());
             });
             villain.getPowers().forEach(power -> {
@@ -83,7 +81,7 @@ public class ServiceLayer {
     public List<SuperPerson> getHeroes() {
         List<SuperPerson> heroes = superPersonDao.getAllHeroes();
         heroes.forEach(hero -> {
-            hero.getOrganizations().forEach(org -> {
+            hero.getOrganisations().forEach(org -> {
                 hero.appendOrgNames(org.getName());
             });
             hero.getPowers().forEach(power -> {
@@ -99,16 +97,16 @@ public class ServiceLayer {
         return powerDao.getAllPowers();
     }
 
-    public List<Organization> getOrganizations() {
-        return orgDao.getAllOrganizations();
+    public List<Organisation> getOrganisations() {
+        return orgDao.getAllOrganisations();
     }
 
     public List<Location> getLocations() {
         return locDao.getAllLocations();
     }
 
-    public void deleteSightingById(int id) {
-        sightingDao.deleteSightingById(id);
+    public void deleteSightingByID(int ID) {
+        sightingDao.deleteSightingByID(ID);
     }
 
     public void addSighting(Sighting sighting) {
@@ -125,11 +123,11 @@ public class ServiceLayer {
         
         if(location != null){
             sighting.setLocation(location);
-            sighting.setLocationId(location.getLocationId());
+            sighting.setLocationID(location.getLocationID());
         }
         if(superPerson != null){
             sighting.setSuperPerson(superPerson);
-            sighting.setSuperPersonId(superPerson.getSuperPersonId());
+            sighting.setSuperPersonID(superPerson.getSuperPersonID());
         }
         
         sighting.setSightingDate(Date.valueOf(LocalDate.now()));
@@ -137,8 +135,8 @@ public class ServiceLayer {
         return sighting;
     }
 
-    public Sighting getSightingById(int id) {
-        return sightingDao.getSightingById(id);
+    public Sighting getSightingByID(int ID) {
+        return sightingDao.getSightingByID(ID);
     }
 
     public Sighting editSighting(Sighting sighting, HttpServletRequest request) {
@@ -152,11 +150,11 @@ public class ServiceLayer {
         
         if(location != null){
             sighting.setLocation(location);
-            sighting.setLocationId(location.getLocationId());
+            sighting.setLocationID(location.getLocationID());
         }
         if(superPerson != null){
             sighting.setSuperPerson(superPerson);
-            sighting.setSuperPersonId(superPerson.getSuperPersonId());
+            sighting.setSuperPersonID(superPerson.getSuperPersonID());
         }
         if(date != null){
             sighting.setSightingDate(date);
@@ -168,85 +166,85 @@ public class ServiceLayer {
         sightingDao.editSighting(sighting);
     }
 
-    public Organization createOrganization(HttpServletRequest request) {
-        Organization organization = new Organization();
+    public Organisation createOrganisation(HttpServletRequest request) {
+        Organisation organisation = new Organisation();
         
 
         String locationName = request.getParameter("locationName");
-        String organizationType = request.getParameter("organizationType");
-        String organizationName = request.getParameter("organizationName");
-        String organizationDesc = request.getParameter("organizationDesc");
-        String organizationPhone = request.getParameter("organizationPhone");
+        String organisationType = request.getParameter("organisationType");
+        String organisationName = request.getParameter("organisationName");
+        String organisationDesc = request.getParameter("organisationDesc");
+        String organisationPhone = request.getParameter("organisationPhone");
         
         if(locDao.getLocationByName(locationName) != null){
-            organization.setLocation(locDao.getLocationByName(locationName));
-            organization.setLocationId(organization.getLocation().getLocationId());
+            organisation.setLocation(locDao.getLocationByName(locationName));
+            organisation.setLocationID(organisation.getLocation().getLocationID());
         }
-        organization.setType(organizationType);
-        organization.setName(organizationName);
-        organization.setDescription(organizationDesc);
-        organization.setPhone(organizationPhone);
+        organisation.setType(organisationAlignemt);
+        organisation.setName(organisationName);
+        organisation.setDescription(organisationDesc);
+        organisation.setPhone(organisationPhone);
         
-        return organization;
+        return organisation;
     }
 
-    public void addOrganization(Organization organization) {
-        orgDao.addOrganization(organization);
+    public void addOrganisation(Organisation organisation) {
+        orgDao.addOrganisation(organisation);
     }
 
-    public void deleteOrganizationById(int id) {
-        orgDao.deleteOrganizationById(id);
+    public void deleteOrganisationByID(int ID) {
+        orgDao.deleteOrganisationByID(ID);
     }
 
-    public Organization getOrganizationById(int id) {
-        return orgDao.getOrganizationById(id);
+    public Organisation getOrganisationByID(int ID) {
+        return orgDao.getOrganisationByID(ID);
     }
 
-    public Organization editOrganization(Organization organization, HttpServletRequest request) {
+    public Organisation editOrganisation(Organisation organisation, HttpServletRequest request) {
         String locationName = request.getParameter("locationName");
-        String organizationType = request.getParameter("organizationType");
-        String organizationName = request.getParameter("organizationName");
-        String organizationDesc = request.getParameter("organizationDesc");
-        String organizationPhone = request.getParameter("organizationPhone");
+        String organisationType = request.getParameter("organisationAlignment");
+        String organisationName = request.getParameter("organisationName");
+        String organisationDesc = request.getParameter("organisationDesc");
+        String organisationPhone = request.getParameter("organisationPhone");
         
          if(locDao.getLocationByName(locationName) != null){
-            organization.setLocation(locDao.getLocationByName(locationName));
-            organization.setLocationId(organization.getLocation().getLocationId());
+            organisation.setLocation(locDao.getLocationByName(locationName));
+            organisation.setLocationID(organisation.getLocation().getLocationID());
          }
-        organization.setType(organizationType);
-        organization.setName(organizationName);
-        organization.setDescription(organizationDesc);
-        organization.setPhone(organizationPhone);
-        return organization;
+        organisation.setAlignment(organisationAlignment);
+        organisation.setName(organisationName);
+        organisation.setDescription(organisationDesc);
+        organisation.setPhone(organisationPhone);
+        return organisation;
     }
 
-    public void updateOrganization(Organization organization) {
-        orgDao.editOrganization(organization);
+    public void updateOrganisation(Organisation organisation) {
+        orgDao.editOrganisation(organisation);
     }
 
     public void addSuperPerson(SuperPerson superPerson) {
         superPersonDao.addSuper(superPerson);
     }
 
-    public void deleteSuperPersonById(int id) {
-        superPersonDao.deleteSuperById(id);
+    public void deleteSuperPersonByID(int ID) {
+        superPersonDao.deleteSuperByID(ID);
     }
 
-    public SuperPerson getSuperPersonById(int id) {
-        return superPersonDao.getSuperById(id);
+    public SuperPerson getSuperPersonByID(int ID) {
+        return superPersonDao.getSuperByID(ID);
     }
 
     public SuperPerson editSuperPerson(SuperPerson superPerson, HttpServletRequest request) {
         String name = request.getParameter("superPersonName");
         String description = request.getParameter("superPersonDesc");
-        String organizationNames[] = request.getParameterValues("organizationNames");
+        String organisationNames[] = request.getParameterValues("organisationNames");
         String powerNames[] = request.getParameterValues("powerNames");
         
-        List<Organization> organizations = new ArrayList<>();
+        List<Organisation> organisations = new ArrayList<>();
         List<Power> powers = new ArrayList<>();
         
-        for(String orgName : organizationNames){
-            organizations.add(orgDao.getOrganizationByName(orgName));
+        for(String orgName : organisationNames){
+            organisations.add(orgDao.getOrganisationByName(orgName));
         }
         
         for(String powerName : powerNames){
@@ -255,7 +253,7 @@ public class ServiceLayer {
           
         superPerson.setName(name);
         superPerson.setDescription(description);
-        superPerson.setOrganizations(organizations);
+        superPerson.setOrganisations(organisations);
         superPerson.setPowers(powers);
         
         return superPerson;
@@ -283,12 +281,12 @@ public class ServiceLayer {
         powerDao.addPower(power);
     }
 
-    public void deletePowerById(int id) {
-        powerDao.deletePowerById(id);
+    public void deletePowerByID(int ID) {
+        powerDao.deletePowerByID(ID);
     }
 
-    public Power getPowerById(int id) {
-        return powerDao.getPowerById(id);
+    public Power getPowerByID(int ID) {
+        return powerDao.getPowerByID(ID);
     }
 
     public Power editPower(Power power, HttpServletRequest request) {
@@ -329,12 +327,12 @@ public class ServiceLayer {
         locDao.addLocation(location);
     }
 
-    public void deleteLocationById(int id) {
-        locDao.deleteLocationById(id);
+    public void deleteLocationByID(int ID) {
+        locDao.deleteLocationByID(ID);
     }
 
-    public Location getLocationById(int id) {
-        return locDao.getLocationById(id);
+    public Location getLocationByID(int ID) {
+        return locDao.getLocationByID(ID);
     }
 
     public Location editLocation(Location location, HttpServletRequest request) {
@@ -363,11 +361,11 @@ public class ServiceLayer {
         List<Sighting> sightings = sightingDao.getAllVillainSightings();
         sightings.addAll(sightingDao.getAllHeroSightings());
         sightings.forEach(sighting ->{
-            sighting.setSuperPerson(superPersonDao.getSuperById(sighting.getSuperPersonId()));
-            sighting.setLocation(locDao.getLocationById(sighting.getLocationId()));
-            sighting.setOrganizations(sighting.getSuperPerson().getOrganizations());
+            sighting.setSuperPerson(superPersonDao.getSuperByID(sighting.getSuperPersonID()));
+            sighting.setLocation(locDao.getLocationByID(sighting.getLocationID()));
+            sighting.setOrganisations(sighting.getSuperPerson().getOrganisations());
             sighting.setPowers(sighting.getSuperPerson().getPowers());
-            sighting.getOrganizations().forEach(org -> {
+            sighting.getOrganisations().forEach(org -> {
                     sighting.appendOrgNames(org.getName());
             });
             sighting.getPowers().forEach(power -> {

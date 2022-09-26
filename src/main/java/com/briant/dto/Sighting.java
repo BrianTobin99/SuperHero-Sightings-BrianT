@@ -5,18 +5,18 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 public class Sighting {
-    private int sightingId, superPersonId, locationId;
+    private int sightingID, superPersonID, locationID;
    
-    @NotNull(message = "Invalid super person")
+    @NotNull(message = "InvalID super person")
     private SuperPerson superPerson;
    
-    @NotNull(message = "Invalid location")
+    @NotNull(message = "InvalID location")
     private Location location;
     
     @NotNull(message = "Must enter a value for date")
     private Date sightingDate;
     
-    private List<Organization> organizations;
+    private List<Organisation> organizations;
     private List<Power> powers;
     private String organizationNames, powerNames;
 
@@ -33,28 +33,28 @@ public class Sighting {
         powerNames = "";
     }
     
-    public int getSightingId() {
-        return sightingId;
+    public int getSightingID() {
+        return sightingID;
     }
 
-    public void setSightingId(int sightingId) {
-        this.sightingId = sightingId;
+    public void setSightingID(int sightingID) {
+        this.sightingID = sightingID;
     }
 
-    public int getSuperPersonId() {
-        return superPersonId;
+    public int getSuperPersonID() {
+        return superPersonID;
     }
 
-    public void setSuperPersonId(int superPersonId) {
-        this.superPersonId = superPersonId;
+    public void setSuperPersonID(int superPersonID) {
+        this.superPersonID = superPersonID;
     }
 
-    public int getLocationId() {
-        return locationId;
+    public int getLocationID() {
+        return locationID;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
     }
 
     public SuperPerson getSuperPerson() {
@@ -81,20 +81,20 @@ public class Sighting {
         this.sightingDate = sightingDate;
     }
 
-    public List<Organization> getOrganizations() {
+    public List<Organisation> getOrganizations() {
         return organizations;
     }
 
-    public void setOrganizations(List<Organization> organizations) {
+    public void setOrganizations(List<Organisation> organizations) {
         this.organizations = organizations;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + this.sightingId;
-        hash = 83 * hash + this.superPersonId;
-        hash = 83 * hash + this.locationId;
+        hash = 83 * hash + this.sightingID;
+        hash = 83 * hash + this.superPersonID;
+        hash = 83 * hash + this.locationID;
         return hash;
     }
 
@@ -110,13 +110,13 @@ public class Sighting {
             return false;
         }
         final Sighting other = (Sighting) obj;
-        if (this.sightingId != other.sightingId) {
+        if (this.sightingID != other.sightingID) {
             return false;
         }
-        if (this.superPersonId != other.superPersonId) {
+        if (this.superPersonID != other.superPersonID) {
             return false;
         }
-        if (this.locationId != other.locationId) {
+        if (this.locationID != other.locationID) {
             return false;
         }
         return true;
