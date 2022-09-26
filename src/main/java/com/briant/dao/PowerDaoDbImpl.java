@@ -1,4 +1,3 @@
-
 package com.briant.dao;
 
 import com.briant.entities.Power;
@@ -11,14 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-
-/**
- *
- * @author Joe McAdams
- * @email joedmcadams@gmail.com
- * 
- */
 
 @Repository
 public class PowerDaoDbImpl implements PowerDao {
