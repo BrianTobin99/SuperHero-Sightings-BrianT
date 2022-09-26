@@ -1,4 +1,3 @@
-
 package com.briant.controllers;
 
 import com.briant.dao.SightingDao;
@@ -13,12 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-/**
- *
- * @author Joe McAdams
- * @email joedmcadams@gmail.com
- * 
- */
 @Controller
 public class HomeController {
     @Autowired

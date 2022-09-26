@@ -8,7 +8,7 @@ public interface SuperPersonDao {
     List<SuperPerson> getAllVillains();
     List<SuperPerson> getAllHeroes();
     SuperPerson addSuper(SuperPerson hero);
-    void deleteSuperById(int heroId); //boolean for verification?
+    void deleteSuperById(int heroId);
     void editSuper(SuperPerson hero);
 
     public SuperPerson getSuperPersonByName(String superPersonName);
