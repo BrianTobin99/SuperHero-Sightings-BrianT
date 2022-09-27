@@ -57,7 +57,7 @@ public class PowerController {
     @GetMapping("deletePower")
     public String deletePower(HttpServletRequest request){
         int id = Integer.parseInt(request.getParameter("id"));
-        service.deletePowerById(id);
+        service.deletePowerByID(id);
         return "redirect:/powers";
     }
     
@@ -66,7 +66,7 @@ public class PowerController {
         model.addAttribute("errors", violations);
         
         int id = Integer.parseInt(request.getParameter("id"));
-        Power power = service.getPowerById(id);
+        Power power = service.getPowerByID(id);
 
         model.addAttribute("power", power);
         return "editPower";
@@ -75,7 +75,7 @@ public class PowerController {
     @PostMapping("editPower")
     public String performEditPower(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Power power = service.getPowerById(id);
+        Power power = service.getPowerByID(id);
         power = service.editPower(power, request);
         
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();

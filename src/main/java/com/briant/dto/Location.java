@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 
 public class Location {
-    private int locationId;
+    private int locationID;
     
     @NotBlank(message = "Must enter a name for the location")
     private String name;
@@ -22,12 +22,12 @@ public class Location {
     private List<Sighting> sightings;
     
 
-    public int getLocationId() {
-        return locationId;
+    public int getLocationID() {
+        return locationID;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
     }
 
     public String getName() {
@@ -89,7 +89,7 @@ public class Location {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + this.locationId;
+        hash = 83 * hash + this.locationID;
         hash = 83 * hash + Objects.hashCode(this.name);
         hash = 83 * hash + Objects.hashCode(this.city);
         hash = 83 * hash + Objects.hashCode(this.state);
@@ -112,7 +112,7 @@ public class Location {
             return false;
         }
         final Location other = (Location) obj;
-        if (this.locationId != other.locationId) {
+        if (this.locationID != other.locationID) {
             return false;
         }
         if (!Objects.equals(this.name, other.name)) {

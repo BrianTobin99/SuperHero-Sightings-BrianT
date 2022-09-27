@@ -20,10 +20,10 @@ public class OrganisationDaoDbImpl implements OrganisationDao {
     JdbcTemplate jdbc;
     
     @Override
-    public Organisation getOrganisationById(int organisationId) {
+    public Organisation getOrganisationByID(int organisationId) {
         try {
-            final String SELECT_ORGANIsATION_BY_ID = "SELECT * FROM organisation WHERE organisationId = ?";
-            Organisation organisation = jdbc.queryForObject(SELECT_ORGANIsATION_BY_ID, new OrganisationMapper(), organisationId);
+            final String SELECT_ORGANISATION_BY_ID = "SELECT * FROM Organisation WHERE OrganisationID = ?";
+            Organisation organisation = jdbc.queryForObject(SELECT_ORGANISATION_BY_ID, new OrganisationMapper(), organisationId);
             organisation = assosciateLocation(organisation);
             return organisation;
         } 
@@ -34,12 +34,12 @@ public class OrganisationDaoDbImpl implements OrganisationDao {
 
     @Override
     public List<Organisation> getAllOrganisations() {
-        final String GET_ALL_ORGANIsATIONS = "SELECT * FROM organisation";
-        List<Organisation> organisations = jdbc.query(GET_ALL_ORGANIsATIONS, new OrganisationMapper());
+        final String GET_ALL_ORGANISATIONS = "SELECT * FROM Organisation";
+        List<Organisation> organisations = jdbc.query(GET_ALL_ORGANISATIONS, new OrganisationMapper());
         
         organisations.forEach(org -> {
             org = assosciateLocation(org);
-            org.setMembers(assosciateSupers(org.getOrganisationId()));
+            org.setMembers(assosciateSupers(org.getOrganisationID()));
         });
         return organisations;
     }
@@ -47,55 +47,51 @@ public class OrganisationDaoDbImpl implements OrganisationDao {
     @Override
     @Transactional
     public Organisation addOrganisation(Organisation organisation) {
-        final String INSERT_ORGANIsATION = "INSERT INTO organisation(locationId, organisationType, organisationName, organisationDesc, organisationPhone) VALUES(?,?,?,?,?)";
-        jdbc.update(INSERT_ORGANIsATION, 
-                organisation.getLocationId(),
-                organisation.getType(),
+        final String INSERT_ORGANISATION = "INSERT INTO Organisation(OrganisationName, Alignment, Description, LocationID, PhoneNumber) VALUES(?,?,?,?,?)";
+        jdbc.update(INSERT_ORGANISATION, 
                 organisation.getName(), 
+                organisation.getAlignment(),
                 organisation.getDescription(),
+                organisation.getLocationID(),
                 organisation.getPhone());
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        organisation.setOrganisationId(newId);
+        organisation.setOrganisationID(newId);
         return organisation;            
     }
 
     @Override
     @Transactional
-    public void deleteOrganisationById(int organisationId) {
-        final String DELETE_ORGHEROVILLAIN = "DELETE ohv.* FROM organisationsuperperson ohv WHERE ohv.organisationId = ?";
-        jdbc.update(DELETE_ORGHEROVILLAIN, organisationId);
-        
-        final String DELETE_ORGANIsATION = "DELETE o.* FROM organisation o WHERE organisationId = ?";
-        jdbc.update(DELETE_ORGANIsATION, organisationId);
+    public void deleteOrganisationByID(int organisationId) {
+        final String DELETE_ORGANISATION = "DELETE FROM Organisation WHERE OrganisationID = ?";
+        jdbc.update(DELETE_ORGANISATION, organisationId);
     }
 
     @Override
     public void editOrganisation(Organisation organisation) {
-        final String UPDATE_LOCATION = "UPDATE organisation SET locationId = ?, organisationType = ?, "
-                + " organisationName = ?, organisationDesc = ?, organisationPhone = ? WHERE organisationId = ?";
-        jdbc.update(UPDATE_LOCATION, organisation.getLocationId(), organisation.getType(), 
-                organisation.getName(), organisation.getDescription(), organisation.getPhone(), 
-                organisation.getOrganisationId());
+        final String UPDATE_LOCATION = "UPDATE Organisation SET OrganisationName = ?, Alignment = ?, "
+                + " Description = ?, LocationID = ?, PhoneNumber = ? WHERE OrganisationID = ?";
+        jdbc.update(UPDATE_LOCATION, organisation.getName(), organisation.getAlignment(), 
+                organisation.getDescription(), organisation.getLocationID(),
+                organisation.getPhone(), 
+                organisation.getOrganisationID());
     }
 
     private Organisation assosciateLocation(Organisation organisation) {
-        final String GET_LOCATION_ORGANIsATION = "SELECT * FROM location WHERE locationId = ?";
-        organisation.setLocation(jdbc.queryForObject(GET_LOCATION_ORGANIsATION, new LocationDaoDbImpl.LocationMapper(), organisation.getLocationId()));
+        final String GET_LOCATION_ORGANISATION = "SELECT * FROM Location WHERE LocationID = ?";
+        organisation.setLocation(jdbc.queryForObject(GET_LOCATION_ORGANISATION, new LocationDaoDbImpl.LocationMapper(), organisation.getLocationID()));
         return organisation;
     }
 
     @Override
     public Organisation getOrganisationByName(String orgName) {
-        final String GET_ORG_BY_NAME = "SELECT * FROM organisation WHERE organisationName = ?";
+        final String GET_ORG_BY_NAME = "SELECT * FROM Organisation WHERE OrganisationName = ?";
         Organisation organisation = jdbc.queryForObject(GET_ORG_BY_NAME, new OrganisationMapper(), orgName);
         organisation = assosciateLocation(organisation);
         return organisation;
     }
 
     private List<SuperPerson> assosciateSupers(int organisationId) {
-        final String GET_SUPERS_IN_ORG = "SELECT p.* FROM organisationsuperperson osp "
-                + "JOIN superperson p ON p.superPersonId = osp.superPersonId "
-                + "WHERE organisationId = ?";
+        final String GET_SUPERS_IN_ORG = "SELECT * FROM SuperPerson WHERE organisationId = ?";
         List<SuperPerson> superPersons = jdbc.query(GET_SUPERS_IN_ORG, new SuperPersonDaoDbImpl.SuperPersonMapper(), organisationId);
         return superPersons;
     }
@@ -106,12 +102,12 @@ public class OrganisationDaoDbImpl implements OrganisationDao {
         @Override
         public Organisation mapRow(ResultSet rs, int index) throws SQLException {
             Organisation organisation = new Organisation();
-            organisation.setOrganisationId(rs.getInt("organisationId"));
+            organisation.setOrganisationID(rs.getInt("organisationId"));
             organisation.setName(rs.getString("organisationName"));
             organisation.setDescription(rs.getString("organisationDesc"));
-            organisation.setLocationId(rs.getInt("locationId"));
+            organisation.setLocationID(rs.getInt("locationId"));
             organisation.setPhone(rs.getString("organisationPhone"));
-            organisation.setType(rs.getString("organisationType"));
+            organisation.setAlignment(rs.getString("Alignment"));
             
             return organisation;
         }

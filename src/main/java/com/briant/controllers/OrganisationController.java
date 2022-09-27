@@ -55,7 +55,7 @@ public class OrganisationController {
     @GetMapping("deleteOrganisation")
     public String deleteOrganisation(HttpServletRequest request){
         int id = Integer.parseInt(request.getParameter("id"));
-        service.deleteOrganisationById(id);
+        service.deleteOrganisationByID(id);
         return "redirect:/organisations";
     }
     
@@ -63,7 +63,7 @@ public class OrganisationController {
     public String editOrganisation(HttpServletRequest request, Model model) {
         model.addAttribute("errors", violations);
         int id = Integer.parseInt(request.getParameter("id"));
-        Organisation organisation = service.getOrganisationById(id);
+        Organisation organisation = service.getOrganisationByID(id);
 
         model.addAttribute("organisation", organisation);
         return "editOrganisation";
@@ -72,7 +72,7 @@ public class OrganisationController {
     @PostMapping("editOrganisation")
     public String performEditOrganisation(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Organisation organisation = service.getOrganisationById(id);
+        Organisation organisation = service.getOrganisationByID(id);
         organisation = service.editOrganisation(organisation, request);
         
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();

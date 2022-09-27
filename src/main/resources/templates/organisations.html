@@ -20,7 +20,7 @@
         </div>
         <div class="row m-4">
             <div class="col text-left">
-                <h1>Organizations</h1>
+                <h1>Organisations</h1>
             </div>
         </div>
         <div class="row m-4 border border-dark">
@@ -39,15 +39,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="organization : ${organizations}">
-                                <td th:text="${organization.name}">Name</td>
-                                <td th:text="${organization.type}">Type</td>
-                                <td th:text="${organization.description}">Description</td>
-                                <td th:text="${organization.location.name}">Description</td>
-                                <td th:text="${organization.phone}">Phone</td>
+                            <tr th:each="organisation : ${organisations}">
+                                <td th:text="${organisation.name}">Name</td>
+                                <td th:text="${organisation.type}">Type</td>
+                                <td th:text="${organisation.description}">Description</td>
+                                <td th:text="${organisation.location.name}">Description</td>
+                                <td th:text="${organisation.phone}">Phone</td>
                                 <!--Organization members, location-->
-                                <td><a href="#" th:href="@{/editOrganization(id=${organization.organizationId})}">Edit</a></td>
-                                <td><a href="#" th:href="@{/deleteOrganization(id=${organization.organizationId})}" onclick = "return confirm('Are you sure?')">Delete</a></td>
+                                <td><a href="#" th:href="@{/editOrganisation(id=${organisation.organisationId})}">Edit</a></td>
+                                <td><a href="#" th:href="@{/deleteOrganisation(id=${organisation.organisationId})}" onclick = "return confirm('Are you sure?')">Delete</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -71,40 +71,40 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="organizationType" class="col-3 col-form-label">
+                            <label for="organisationType" class="col-3 col-form-label">
                                 Type:</label>
                             <div class="col-9">
-                                <select id = "organizationType" name = "organizationType">
+                                <select id = "organisationType" name = "organisationType">
                                     <option value ="Hero">Hero</option>
                                     <option value ="Villain">Villain</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="organizationName" class="col-3 col-form-label">
+                            <label for="organisationName" class="col-3 col-form-label">
                                 Name:</label>
                             <div class="col-9">
-                                <input type="text" name="organizationName" 
-                                       id="organizationName" class="form-control"/>
+                                <input type="text" name="organisationName" 
+                                       id="organisationName" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="organizationDesc" class="col-3 col-form-label">
+                            <label for="organisationDesc" class="col-3 col-form-label">
                                 Description:</label>
                             <div class="col-9">
-                                <input type="text" name="organizationDesc" 
-                                       id="organizationDesc" class="form-control"/>
+                                <input type="text" name="organisationDesc" 
+                                       id="organisationDesc" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="organizationPhone" class="col-3 col-form-label">
+                            <label for="organisationPhone" class="col-3 col-form-label">
                                 Phone:</label>
                             <div class="col-9">
-                                <input type="text" name="organizationPhone" 
-                                       id="organizationPhone" class="form-control"/>
+                                <input type="text" name="organisationPhone" 
+                                       id="organisationPhone" class="form-control"/>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Organization</button>
+                        <button type="submit" class="btn btn-primary">Add Organisation</button>
                     </form>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                 <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
             </div>
             <div class="col">
-                <a href="organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
+                <a href="organisations" class="btn btn-outline-primary btn-lg">Organisations</a>
             </div>
             <div class="col">
                 <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>

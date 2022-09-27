@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 
 
 public class Power {
-    private int powerId;
+    private int powerID;
     
     @NotBlank(message = "Must enter a value for name")
     @Size(max = 50, message = "Name must be less than 50 characters")
@@ -16,12 +16,12 @@ public class Power {
     @Size(max = 100, message = "Description must be less than 100 characters")
     private String description;
 
-    public int getPowerId() {
-        return powerId;
+    public int getPowerID() {
+        return powerID;
     }
 
-    public void setPowerId(int powerId) {
-        this.powerId = powerId;
+    public void setPowerID(int powerID) {
+        this.powerID = powerID;
     }
 
     public String getName() {
@@ -43,7 +43,7 @@ public class Power {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.powerId;
+        hash = 37 * hash + this.powerID;
         hash = 37 * hash + Objects.hashCode(this.name);
         hash = 37 * hash + Objects.hashCode(this.description);
         return hash;
@@ -61,7 +61,7 @@ public class Power {
             return false;
         }
         final Power other = (Power) obj;
-        if (this.powerId != other.powerId) {
+        if (this.powerID != other.powerID) {
             return false;
         }
         if (!Objects.equals(this.name, other.name)) {

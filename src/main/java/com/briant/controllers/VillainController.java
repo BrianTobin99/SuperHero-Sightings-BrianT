@@ -40,7 +40,7 @@ public class VillainController {
         List<SuperPerson> villains = service.getVillains();
         model.addAttribute("villains", villains);
         model.addAttribute("powers", service.getPowers());
-        model.addAttribute("organizations", service.getOrganizations());
+        model.addAttribute("organisations", service.getOrganisations());
         return "villains";
     }
 
@@ -55,16 +55,16 @@ public class VillainController {
         List<Power> powers = new ArrayList<>();
         if(powerIds != null){
             for(int powerId: powerIds){
-                powers.add(service.getPowerById(powerId));
+                powers.add(service.getPowerByID(powerId));
             }
             villain.setPowers(powers);
         }
         if(organizationIds != null){
             List<Organisation> organizations = new ArrayList<>();
             for(int orgId: organizationIds){
-                organizations.add(service.getOrganizationById(orgId));
+                organizations.add(service.getOrganisationByID(orgId));
             }
-            villain.setOrganizations(organizations);
+            villain.setOrganisations(organizations);
         }
 
         
@@ -80,7 +80,7 @@ public class VillainController {
     @GetMapping("deleteVillain")
     public String deleteVillain(HttpServletRequest request){
         int id = Integer.parseInt(request.getParameter("id"));
-        service.deleteSuperPersonById(id);
+        service.deleteSuperPersonByID(id);
         return "redirect:/villains";
     }
     
@@ -89,7 +89,7 @@ public class VillainController {
         violations.clear();
         model.addAttribute("errors", violations);
         int id = Integer.parseInt(request.getParameter("id"));
-        SuperPerson villain = service.getSuperPersonById(id);
+        SuperPerson villain = service.getSuperPersonByID(id);
 
         model.addAttribute("villain", villain);
         return "editVillain";
@@ -98,7 +98,7 @@ public class VillainController {
     @PostMapping("editVillain")
     public String performEditVillain(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        SuperPerson villain = service.getSuperPersonById(id);
+        SuperPerson villain = service.getSuperPersonByID(id);
         villain = service.editSuperPerson(villain, request);
         
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();

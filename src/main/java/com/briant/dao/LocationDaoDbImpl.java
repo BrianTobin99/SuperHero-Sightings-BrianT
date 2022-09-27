@@ -20,10 +20,10 @@ public class LocationDaoDbImpl implements LocationDao {
     JdbcTemplate jdbc;
     
     @Override
-    public Location getLocationById(int locationId) {
+    public Location getLocationByID(int locationId) {
         try {
-            final String SELECT_ORGANIZATION_BY_ID = "SELECT * FROM location WHERE locationId = ?";
-            Location location = jdbc.queryForObject(SELECT_ORGANIZATION_BY_ID, new LocationMapper(), locationId);
+            final String SELECT_ORGANISATION_BY_ID = "SELECT * FROM Location WHERE LocationID = ?";
+            Location location = jdbc.queryForObject(SELECT_ORGANISATION_BY_ID, new LocationMapper(), locationId);
             return location;
         } 
         catch(DataAccessException ex) {
@@ -33,15 +33,15 @@ public class LocationDaoDbImpl implements LocationDao {
 
     @Override
     public List<Location> getAllLocations() {
-        final String GET_ALL_LOCATIONS = "SELECT * FROM location";
+        final String GET_ALL_LOCATIONS = "SELECT * FROM Location";
         return jdbc.query(GET_ALL_LOCATIONS, new LocationMapper());
     }
 
     @Override
     @Transactional
     public Location addLocation(Location location) {
-        final String INSERT_LOCATION = "INSERT INTO location(locationName, locationCity, locationState, "
-                + "locationAddress, locationCoord, locationDesc) VALUES (?,?,?,?,?,?)";
+        final String INSERT_LOCATION = "INSERT INTO Location(LocationName, City, State, Address,"
+                + " Coordinates, Description) VALUES (?,?,?,?,?,?)";
         jdbc.update(INSERT_LOCATION,
                 location.getName(),
                 location.getCity(),
@@ -50,40 +50,36 @@ public class LocationDaoDbImpl implements LocationDao {
                 location.getCoordinates(),
                 location.getDescription());
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        location.setLocationId(newId);
+        location.setLocationID(newId);
         return location;
     }
 
     @Override
     @Transactional
-    public void deleteLocationById(int locationId) {
-        final String DELETE_SIGHTING = "DELETE s.* FROM sighting s WHERE locationId = ?";
+    public void deleteLocationByID(int locationId) {
+        final String DELETE_SIGHTING = "DELETE FROM Sighting WHERE LocationID = ?";
         jdbc.update(DELETE_SIGHTING, locationId);
         
-        final String DELETE_ORGHEROVILLAIN = "DELETE ohv.* FROM organizationsuperperson ohv "
-                + "JOIN organization o ON ohv.organizationId = o.organizationId WHERE o.locationId = ?";
-        jdbc.update(DELETE_ORGHEROVILLAIN, locationId);
-        
-        final String DELETE_ORGANIZATION = "DELETE o.* FROM organization o WHERE locationId = ?";
+        final String DELETE_ORGANIZATION = "DELETE FROM Organization WHERE LocationID = ?";
         jdbc.update(DELETE_ORGANIZATION, locationId);
         
-        final String DELETE_LOCATION = "DELETE l.* FROM location l WHERE locationId = ?";
+        final String DELETE_LOCATION = "DELETE FROM Location l WHERE LocationID = ?";
         jdbc.update(DELETE_LOCATION, locationId);
     }
 
     @Override
     public void editLocation(Location location) {
-        final String UPDATE_LOCATION = "UPDATE location SET locationName = ?, locationCity = ?, "
-                + " locationState = ?, locationAddress = ?, locationCoord = ?, locationDesc = ? WHERE locationId = ?";
+        final String UPDATE_LOCATION = "UPDATE Location SET LocationName = ?, City = ?, "
+                + " State = ?, Address = ?, Coordinates = ?, Description = ? WHERE LocationID = ?";
         jdbc.update(UPDATE_LOCATION, location.getName(), location.getCity(), 
                 location.getState(), location.getAddress(), location.getCoordinates(), 
-                location.getDescription(), location.getLocationId());    
+                location.getDescription(), location.getLocationID());    
     }
 
     @Override
     public Location getLocationByName(String locationName) {
         try {
-            final String GET_LOCATION_BY_NAME = "SELECT  * FROM location WHERE locationName = ?";
+            final String GET_LOCATION_BY_NAME = "SELECT  * FROM Location WHERE LocationName = ?";
             return jdbc.queryForObject(GET_LOCATION_BY_NAME, new LocationMapper(), locationName);
         } 
         catch(DataAccessException ex) {
@@ -97,7 +93,7 @@ public class LocationDaoDbImpl implements LocationDao {
         @Override
         public Location mapRow(ResultSet rs, int index) throws SQLException {
             Location location = new Location();
-            location.setLocationId(rs.getInt("locationId"));
+            location.setLocationID(rs.getInt("locationId"));
             location.setName(rs.getString("locationName"));
             location.setCity(rs.getString("locationCity"));
             location.setState(rs.getString("locationState"));

@@ -7,16 +7,16 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
-public class Organization {
+public class Organisation {
 
-    private int organizationId, locationId;
+    private int organisationID, locationID;
 
     @NotBlank(message = "Must enter a value for name")
     @Size(max = 50, message = "Name must be less than 50 characters")
     private String name;
     
-    @NotNull(message = "Type is somehow null")
-    private String type;
+    @NotNull(message = "Alignment is somehow null")
+    private String alignment;
 
     @Size(max = 100, message="Description must be less than 100 characters")
     private String description; 
@@ -37,20 +37,20 @@ public class Organization {
         this.location = location;
     }
 
-    public int getOrganizationId() {
-        return organizationId;
+    public int getOrganisationID() {
+        return organisationID;
     }
 
-    public void setOrganizationId(int organizationId) {
-        this.organizationId = organizationId;
+    public void setOrganisationID(int organisationID) {
+        this.organisationID = organisationID;
     }
 
-    public int getLocationId() {
-        return locationId;
+    public int getLocationID() {
+        return locationID;
     }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
     }
 
     public String getName() {
@@ -61,12 +61,12 @@ public class Organization {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getAlignment() {
+        return alignment;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setAlignment(String alignment) {
+        this.alignment = alignment;
     }
 
     public String getDescription() {
@@ -96,10 +96,10 @@ public class Organization {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + this.organizationId;
-        hash = 31 * hash + this.locationId;
+        hash = 31 * hash + this.organisationID;
+        hash = 31 * hash + this.locationID;
         hash = 31 * hash + Objects.hashCode(this.name);
-        hash = 31 * hash + Objects.hashCode(this.type);
+        hash = 31 * hash + Objects.hashCode(this.alignment);
         hash = 31 * hash + Objects.hashCode(this.description);
         hash = 31 * hash + Objects.hashCode(this.phone);
         return hash;
@@ -116,17 +116,17 @@ public class Organization {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Organization other = (Organization) obj;
-        if (this.organizationId != other.organizationId) {
+        final Organisation other = (Organisation) obj;
+        if (this.organisationID != other.organisationID) {
             return false;
         }
-        if (this.locationId != other.locationId) {
+        if (this.locationID != other.locationID) {
             return false;
         }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Objects.equals(this.type, other.type)) {
+        if (!Objects.equals(this.alignment, other.alignment)) {
             return false;
         }
         if (!Objects.equals(this.description, other.description)) {

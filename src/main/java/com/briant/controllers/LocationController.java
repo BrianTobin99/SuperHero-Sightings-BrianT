@@ -56,7 +56,7 @@ public class LocationController {
     @GetMapping("deleteLocation")
     public String deleteLocation(HttpServletRequest request){
         int id = Integer.parseInt(request.getParameter("id"));
-        service.deleteLocationById(id);
+        service.deleteLocationByID(id);
         return "redirect:/locations";
     }
     
@@ -65,7 +65,7 @@ public class LocationController {
         violations.clear();
         model.addAttribute("errors", violations);
         int id = Integer.parseInt(request.getParameter("id"));
-        Location location = service.getLocationById(id);
+        Location location = service.getLocationByID(id);
 
         model.addAttribute("location", location);
         return "editLocation";
@@ -74,7 +74,7 @@ public class LocationController {
     @PostMapping("editLocation")
     public String performEditLocation(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Location location = service.getLocationById(id);
+        Location location = service.getLocationByID(id);
         location = service.editLocation(location, request);
         
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();

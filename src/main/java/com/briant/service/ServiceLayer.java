@@ -13,10 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.briant.dao.LocationDao;
+import com.briant.dao.OrganisationDao;
 import com.briant.dao.PowerDao;
 import com.briant.dao.SightingDao;
 import com.briant.dao.SuperPersonDao;
 import com.briant.dto.Location;
+import com.briant.dto.Organisation;
 import com.briant.dto.Power;
 import com.briant.dto.Sighting;
 import com.briant.dto.SuperPerson;
@@ -130,7 +132,7 @@ public class ServiceLayer {
             sighting.setSuperPersonID(superPerson.getSuperPersonID());
         }
         
-        sighting.setSightingDate(Date.valueOf(LocalDate.now()));
+        sighting.setSightingTime(Date.valueOf(LocalDate.now()));
         
         return sighting;
     }
@@ -157,7 +159,7 @@ public class ServiceLayer {
             sighting.setSuperPersonID(superPerson.getSuperPersonID());
         }
         if(date != null){
-            sighting.setSightingDate(date);
+            sighting.setSightingTime(date);
         }
         return sighting;
     }
@@ -180,7 +182,7 @@ public class ServiceLayer {
             organisation.setLocation(locDao.getLocationByName(locationName));
             organisation.setLocationID(organisation.getLocation().getLocationID());
         }
-        organisation.setType(organisationAlignemt);
+        organisation.setAlignment(organisationType);
         organisation.setName(organisationName);
         organisation.setDescription(organisationDesc);
         organisation.setPhone(organisationPhone);
@@ -211,7 +213,7 @@ public class ServiceLayer {
             organisation.setLocation(locDao.getLocationByName(locationName));
             organisation.setLocationID(organisation.getLocation().getLocationID());
          }
-        organisation.setAlignment(organisationAlignment);
+        organisation.setAlignment(organisationType);
         organisation.setName(organisationName);
         organisation.setDescription(organisationDesc);
         organisation.setPhone(organisationPhone);

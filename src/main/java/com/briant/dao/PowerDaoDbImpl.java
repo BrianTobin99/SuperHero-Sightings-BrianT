@@ -18,9 +18,9 @@ public class PowerDaoDbImpl implements PowerDao {
     JdbcTemplate jdbc;
     
     @Override
-    public Power getPowerById(int powerId) {
+    public Power getPowerByID(int powerId) {
         try {
-            final String SELECT_POWER_BY_ID = "SELECT * FROM power WHERE powerId = ?";
+            final String SELECT_POWER_BY_ID = "SELECT * FROM Power WHERE PowerID = ?";
             Power power = jdbc.queryForObject(SELECT_POWER_BY_ID, new PowerMapper(), powerId);
             return power;
         } 
@@ -31,39 +31,39 @@ public class PowerDaoDbImpl implements PowerDao {
 
     @Override
     public List<Power> getAllPowers() {
-        final String GET_ALL_POWERS = "SELECT * FROM power";
+        final String GET_ALL_POWERS = "SELECT * FROM Power";
         return jdbc.query(GET_ALL_POWERS, new PowerMapper());
     }
 
     @Override
     @Transactional
     public Power addPower(Power power) {
-        final String INSERT_POWER = "INSERT INTO power(powerName, powerDesc) VALUES (?,?)";
+        final String INSERT_POWER = "INSERT INTO Power(PowerName, Description) VALUES (?,?)";
         jdbc.update(INSERT_POWER, power.getName(), power.getDescription());
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        power.setPowerId(newId);
+        power.setPowerID(newId);
         return power;
     }
 
     @Override
     @Transactional
-    public void deletePowerById(int powerId) {
-        final String DELETE_HEROVILLAINPOWER = "DELETE hvp.* FROM superpersonpower hvp WHERE powerId = ?";
+    public void deletePowerByID(int powerId) {
+        final String DELETE_HEROVILLAINPOWER = "DELETE FROM Power WHERE PowerID = ?";
         jdbc.update(DELETE_HEROVILLAINPOWER, powerId);
         
-        final String DELETE_POWER = "DELETE p.* FROM power p WHERE powerId = ?";
+        final String DELETE_POWER = "DELETE FROM Power WHERE PowerID = ?";
         jdbc.update(DELETE_POWER, powerId);
     }
 
     @Override
     public void editPower(Power power) {
-        final String UPDATE_POWER = "UPDATE power SET powerName = ?, powerDesc = ? WHERE powerId = ?";
-        jdbc.update(UPDATE_POWER, power.getName(), power.getDescription(), power.getPowerId());
+        final String UPDATE_POWER = "UPDATE Power SET PowerName = ?, Description = ? WHERE PowerID = ?";
+        jdbc.update(UPDATE_POWER, power.getName(), power.getDescription(), power.getPowerID());
     }
 
     @Override
     public Power getPowerByName(String powerName) {
-        final String GET_POWER_BY_NAME = "SELECT * FROM power WHERE powerName = ?";
+        final String GET_POWER_BY_NAME = "SELECT * FROM Power WHERE PowerName = ?";
         Power power = jdbc.queryForObject(GET_POWER_BY_NAME, new PowerMapper(), powerName);
         return power;    
     }
@@ -73,7 +73,7 @@ public class PowerDaoDbImpl implements PowerDao {
         @Override
         public Power mapRow(ResultSet rs, int index) throws SQLException {
             Power power = new Power();
-            power.setPowerId(rs.getInt("powerId"));
+            power.setPowerID(rs.getInt("powerId"));
             power.setName(rs.getString("powerName"));
             power.setDescription(rs.getString("powerDesc"));
             return power;

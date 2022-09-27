@@ -7,12 +7,12 @@ public class SuperPerson {
     private int superPersonID;
     private String name, description;
     private boolean villain;
-    private List<Organisation> organizations;
+    private List<Organisation> organisations;
     private List<Power> powers;
-    String organizationNames, powerNames;
+    String organisationNames, powerNames;
     
     public SuperPerson(){
-        organizationNames = "";
+        organisationNames = "";
         powerNames = "";
     }
 
@@ -53,12 +53,12 @@ public class SuperPerson {
         this.villain = villain;
     }
 
-    public List<Organisation> getOrganizations() {
-        return organizations;
+    public List<Organisation> getOrganisations() {
+        return organisations;
     }
 
-    public void setOrganizations(List<Organisation> organizations) {
-        this.organizations = organizations;
+    public void setOrganisations(List<Organisation> organisations) {
+        this.organisations = organisations;
     }
 
     public List<Power> getPowers() {
@@ -108,15 +108,15 @@ public class SuperPerson {
     }
 
     public void appendOrgNames(String name) {
-        this.organizationNames += name + "<br>";
+        this.organisationNames += name + "<br>";
     }
     
     public void appendPowerNames(String name) {
         this.powerNames += name + "<br>";
     }
     
-    public String getOrganizationNames(){
-        return organizationNames;
+    public String getOrganisationNames(){
+        return organisationNames;
     }
     
     public String getPowerNames(){

@@ -5,10 +5,10 @@ import java.util.List;
 import com.briant.dto.Power;
 
 public interface PowerDao {
-    Power getPowerById(int powerId);
+    Power getPowerByID(int powerId);
     List<Power> getAllPowers();
     Power addPower(Power power);
-    void deletePowerById(int powerId); 
+    void deletePowerByID(int powerId); 
     void editPower(Power power);
 
     public Power getPowerByName(String powerName);

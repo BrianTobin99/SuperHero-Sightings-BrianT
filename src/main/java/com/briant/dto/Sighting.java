@@ -14,11 +14,11 @@ public class Sighting {
     private Location location;
     
     @NotNull(message = "Must enter a value for date")
-    private Date sightingDate;
+    private Date SightingTime;
     
-    private List<Organisation> organizations;
+    private List<Organisation> organisations;
     private List<Power> powers;
-    private String organizationNames, powerNames;
+    private String organisationNames, powerNames;
 
     public List<Power> getPowers() {
         return powers;
@@ -29,7 +29,7 @@ public class Sighting {
     }
     
     public Sighting(){
-        organizationNames = "";
+        organisationNames = "";
         powerNames = "";
     }
     
@@ -73,20 +73,20 @@ public class Sighting {
         this.location = location;
     }
 
-    public Date getSightingDate() {
-        return sightingDate;
+    public Date getSightingTime() {
+        return SightingTime;
     }
 
-    public void setSightingDate(Date sightingDate) {
-        this.sightingDate = sightingDate;
+    public void setSightingTime(Date SightingTime) {
+        this.SightingTime = SightingTime;
     }
 
-    public List<Organisation> getOrganizations() {
-        return organizations;
+    public List<Organisation> getOrganisations() {
+        return organisations;
     }
 
-    public void setOrganizations(List<Organisation> organizations) {
-        this.organizations = organizations;
+    public void setOrganisations(List<Organisation> organisations) {
+        this.organisations = organisations;
     }
 
     @Override
@@ -123,7 +123,7 @@ public class Sighting {
     }
 
     public void appendOrgNames(String name) {
-        this.organizationNames += name + "<br>";
+        this.organisationNames += name + "<br>";
     }
     
     public void appendPowerNames(String name) {
@@ -131,7 +131,7 @@ public class Sighting {
     }
     
     public String getOrganizationNames(){
-        return organizationNames;
+        return organisationNames;
     }
     
     public String getPowerNames(){

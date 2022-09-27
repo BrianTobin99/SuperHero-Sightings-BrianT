@@ -22,7 +22,7 @@
             <div class="col text-center border border-dark">
                 <p>Welcome to the Super Hero Sightings web application! All navigation can be found below. On this web app,
                 you can view sightings of super heroes and villains, the details of those super heroes and villains, as well as
-                any associated organizations and locations. You can also add and delete any of the data as necessary. Have fun!</p>
+                any associated organisations and locations. You can also add and delete any of the data as necessary. Have fun!</p>
             </div>
         </div>
         <div class="row m-4">
@@ -38,7 +38,7 @@
                             <th>Name</th>
                             <th>Location</th>
                             <th>Date</th>
-                            <th>Organization(s)</th>
+                            <th>Organisation(s)</th>
                             <th>Power(s)</th>
                             <th></th>
                             <th></th>
@@ -49,7 +49,6 @@
                             <td th:text="${sighting.superPerson.name}">Name</td>
                             <td th:text="${sighting.location.name}">Location</td>
                             <td th:text="${sighting.sightingDate}">Date</td>
-                            <td th:utext="${sighting.organizationNames}">Organization(s)</td>
                             <td th:utext="${sighting.powerNames}">Power(s)</td>
                             <td><a href="#" th:href="@{/editSighting(id=${sighting.sightingId})}">Edit</a></td>
                             <td><a href="#" th:href="@{/deleteSighting(id=${sighting.sightingId})}" onclick="return confirm('Are you sure?')">Delete</a></td>
@@ -72,7 +71,7 @@
                 <a href="locations" class="btn btn-outline-primary btn-lg">Locations</a>
             </div>
             <div class="col">
-                <a href="organizations" class="btn btn-outline-primary btn-lg">Organizations</a>
+                <a href="organisations" class="btn btn-outline-primary btn-lg">Organisations</a>
             </div>
             <div class="col">
                 <a href="sightings" class="btn btn-outline-primary btn-lg">Sightings</a>

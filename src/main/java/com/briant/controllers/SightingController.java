@@ -41,7 +41,7 @@ public class SightingController {
     @GetMapping("deleteSighting")
     public String deleteSighting(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        service.deleteSightingById(id);
+        service.deleteSightingByID(id);
         return "redirect:/sightings";
     }
     
@@ -64,7 +64,7 @@ public class SightingController {
         violations.clear();
         model.addAttribute("errors", violations);
         int id = Integer.parseInt(request.getParameter("id"));
-        Sighting sighting = service.getSightingById(id);
+        Sighting sighting = service.getSightingByID(id);
         model.addAttribute("sighting", sighting);
         
         return "editSighting";
@@ -73,7 +73,7 @@ public class SightingController {
     @PostMapping("editSighting")
     public String performEditSighting(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Sighting sighting = service.getSightingById(id);
+        Sighting sighting = service.getSightingByID(id);
         sighting = service.editSighting(sighting, request);
         
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
