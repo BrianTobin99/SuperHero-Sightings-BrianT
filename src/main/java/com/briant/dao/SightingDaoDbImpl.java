@@ -48,7 +48,7 @@ public class SightingDaoDbImpl implements SightingDao {
 
     @Override
     public List<Sighting> getAllVillainSightings() {  
-        final String GET_ALL_SIGHTINGS = "SELECT * FROM sighting s JOIN superperson sp ON s.superPersonId = sp.superPersonId WHERE sp.isVillain = ?";
+        final String GET_ALL_SIGHTINGS = "SELECT * FROM Sighting JOIN SuperPerson ON Sighting.SuperPersonID=SuperPerson.SuperPersonID WHERE SuperPerson.IsVillain = ?";
         List<Sighting> sightings = jdbc.query(GET_ALL_SIGHTINGS, new SightingMapper(), true); 
         sightings.forEach(sighting -> {
             sighting = assosciateSuperPerson(sighting);
